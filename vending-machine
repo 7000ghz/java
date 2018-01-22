@@ -1,0 +1,181 @@
+package vends;
+import java.util.Scanner;
+
+public class Vends  {
+
+public static class Soda{
+	protected String name;
+	protected int price;
+	protected int supply;
+	
+	public Soda(){
+	/*	name="";
+		price=0;
+		supply=0;*/
+	}//soda constructor w/o params
+	public void setSoda(String n,int p,int s){
+		name=n;
+		price=p;
+		supply=s;
+	}//soda constructor w/param
+	public String getName() {
+		return name;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public int getSupply() {
+		return supply;
+	}
+	public int buySoda() {
+		supply-=1;
+		return supply;
+	}
+
+	
+}//class soda
+private static Scanner operation;
+	
+	public static void contents(Soda[] machine2) {//set contents
+		machine2[0].setSoda("Mountain Dew", 15, 10);
+		machine2[1].setSoda("Pepsi", 10, 1);
+		machine2[2].setSoda("Dr.Pepper", 35, 5);
+		machine2[3].setSoda("Fanta", 25, 3);
+	}//set contents
+	
+	public static int compute(int cash, Soda[] drink,int a) {//compute
+		int change=cash,getCash=0,smallChange=0;
+		operation = new Scanner(System.in);
+		if(drink[a].getSupply()==0) {
+			System.out.println("Sorry we ran out of that drink.");
+		}else if(drink[a].getPrice()>change){
+			System.out.println("User: Jk! Not enough cash.");
+		}else if(change>=drink[a].getPrice()) {
+			while(getCash != drink[a].getPrice()) {
+				if(getCash>change) {
+					System.out.println("User: Jk! I don't have that much money.");
+					getCash=0;
+				}else if(getCash<drink[a].getPrice()) {
+					System.out.print("Enter cash: ");
+					getCash += operation.nextInt();
+				}else{
+					smallChange=getCash-drink[a].getPrice();
+					getCash=drink[a].getPrice();
+					System.out.println("change: " + smallChange);
+					
+				}
+				
+			}
+			change-=drink[a].getPrice();
+		}else{
+			System.out.print("User: Not enough money ");
+		}
+		return change;
+	}//compute
+	
+	public static void main(String[] args) {//main
+		int cash=100;//user default money
+		final int lenSoda = 4;//immutable length for array
+		Soda[] machine2 = new Soda[lenSoda];//create an array of object 
+		for(int i=0;i<4;++i) {machine2[i]=new Soda();}//set each index as new object
+		contents(machine2);//set data for the content of array
+		
+		String optns;
+		do{
+			System.out.println("my money: " + cash);
+			System.out.print(" ==Soda machine==\nSelect Drink:"
+					+ "\n" + machine2[0].getName() + "\t" + machine2[0].getPrice() + "php\t" + machine2[0].getSupply() + " left"
+					+ "\n" + machine2[1].getName() + "\t\t" + machine2[1].getPrice() + "php\t" + machine2[1].getSupply() + " left"
+					+ "\n" + machine2[2].getName() + "\t" + machine2[2].getPrice() + "php\t" + machine2[2].getSupply() + " left"
+					+ "\n" + machine2[3].getName() + "\t\t" + machine2[3].getPrice() + "php\t" + machine2[3].getSupply() + " left"
+					+ "\n \n> ");
+			operation = new Scanner(System.in);
+			optns = operation.nextLine();
+			int whichSoda;
+			switch(optns) {
+			case "Mountain Dew":
+                        case "mountain dew":
+				System.out.print("\n " + machine2[0].getName() + "\n\n");
+				whichSoda=0;
+				if(cash>0) {
+					cash=compute(cash,machine2,whichSoda);
+					if(machine2[whichSoda].getSupply()>0) {
+						machine2[whichSoda].buySoda();					
+					}else {
+						machine2[whichSoda].getSupply();
+					}
+					
+				}else {
+					System.out.println("User: Looks like I dont have money.");
+				}
+				
+				break;
+			case "Pepsi":
+                        case "pepsi":
+				System.out.print("\n " + machine2[1].getName() + "\n\n");
+				whichSoda=1;
+				if(cash>0) {
+					cash=compute(cash,machine2,whichSoda);
+					if(machine2[whichSoda].getSupply()>0) {
+						machine2[whichSoda].buySoda();					
+					}else {
+						machine2[whichSoda].getSupply();
+					}
+					
+				}else {
+					System.out.println("User: Looks like I dont have money.");
+				}
+				
+				
+				break;
+			case "Dr. Pepper":
+                        case "dr. pepper":
+				System.out.print("\n " + machine2[2].getName() + "\n\n");
+				whichSoda=2;
+				if(cash>0) {
+					cash=compute(cash,machine2,whichSoda);
+					if(machine2[whichSoda].getSupply()>0) {
+						machine2[whichSoda].buySoda();					
+					}else {
+						machine2[whichSoda].getSupply();
+					}
+					
+				}else {
+					System.out.println("User: Looks like I dont have money.");
+				}
+				
+				
+				break;	
+			case "Fanta":
+                        case "fanta":
+				System.out.print("\n " + machine2[3].getName() + "\n\n");
+				whichSoda=3;
+				if(cash>0) {
+					cash=compute(cash,machine2,whichSoda);
+					if(machine2[whichSoda].getSupply()>0) {
+						machine2[whichSoda].buySoda();					
+					}else {
+						machine2[whichSoda].getSupply();
+					}
+					
+				}else {
+					System.out.println("User: Looks like I dont have money.");
+				}
+				
+				
+				break;
+			case "Exit":
+                        case "exit":
+				System.out.print("\n END\n\n");
+				
+				break;
+			default:
+				System.out.print("\n invalid input\n\n");
+				break;
+			}
+			
+		}while(optns!="Exit"||optns!="exit");
+		
+
+	}//main end
+}
