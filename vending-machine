@@ -17,7 +17,7 @@ public static class Soda{
 		name=n;
 		price=p;
 		supply=s;
-	}//soda constructor w/param
+	}//
 	public String getName() {
 		return name;
 	}
@@ -94,7 +94,7 @@ private static Scanner operation;
 			int whichSoda;
 			switch(optns) {
 			case "Mountain Dew":
-                        case "mountain dew":
+			case "mountain dew":
 				System.out.print("\n " + machine2[0].getName() + "\n\n");
 				whichSoda=0;
 				if(cash>0) {
@@ -111,7 +111,7 @@ private static Scanner operation;
 				
 				break;
 			case "Pepsi":
-                        case "pepsi":
+			case "pepsi":
 				System.out.print("\n " + machine2[1].getName() + "\n\n");
 				whichSoda=1;
 				if(cash>0) {
@@ -129,7 +129,7 @@ private static Scanner operation;
 				
 				break;
 			case "Dr. Pepper":
-                        case "dr. pepper":
+			case "dr. pepper":
 				System.out.print("\n " + machine2[2].getName() + "\n\n");
 				whichSoda=2;
 				if(cash>0) {
@@ -147,7 +147,7 @@ private static Scanner operation;
 				
 				break;	
 			case "Fanta":
-                        case "fanta":
+			case "fanta":
 				System.out.print("\n " + machine2[3].getName() + "\n\n");
 				whichSoda=3;
 				if(cash>0) {
@@ -165,7 +165,7 @@ private static Scanner operation;
 				
 				break;
 			case "Exit":
-                        case "exit":
+			case "exit":
 				System.out.print("\n END\n\n");
 				
 				break;
